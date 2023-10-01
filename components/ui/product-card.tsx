@@ -2,6 +2,8 @@
 
 import { Product } from "@/types";
 import Image from "next/image";
+import Iconbutton from "./icon-button";
+import { Expand } from "lucide-react";
 
 interface ProductCard {
    data : Product;
@@ -18,6 +20,15 @@ const ProductCard:React.FC<ProductCard> = ({ data }) => {
                alt="Image"
                className="aspect-square object-cover rounded-md"
             />
+            <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
+               <div className="flex gap-x-6 justify-center">
+                  <Iconbutton
+                     onClick={() => {}}
+                     icon={<Expand size={20} className="text-gray-600"/>}
+
+                  />
+               </div>
+            </div>
          </div>
       </div>
    )
