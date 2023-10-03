@@ -16,7 +16,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
           <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
             <Tab.List className="grid grid-cols-4 gap-6">
               {images.map((image) => (
-                <GalleryTab 
+                <GalleryTab  // Muestra la imagen del producto en grande
                   key={image.id}
                   image={image}
                 />  
@@ -25,7 +25,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
           </div>
           <Tab.Panels className="aspect-square w-full">
               {
-                images.map((image) => (
+                images.map((image) => ( // Muestra todas las imagenes del product[]
                   <Tab.Panel key={image.id}>
                     <div className="aspect-square relative h-full w-full sm:rounded-lg overflow-hidden">
                       <Image 
