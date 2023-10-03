@@ -1,29 +1,11 @@
 import { Product } from "@/types";
-import qs from "query-string";
 
-const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;  // Ruta original a la petición de la api
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`; //http://localhost:3000/api/idstore/products
 
-interface Query {
-    categoryId?: string;
-    colorId?: string;
-    sizeId?: string;
-    isFeatured?: boolean;
-}
-
-const getProducts = async (query: Query): Promise<Product[]> => {
-
-    const url = qs.stringifyUrl({             
-        url: URL,                                       // A la URL le añadimos 
-        query: {                                        // las props como queremos que aparezcan
-            colorId: query.colorId,                     // si es que vienen.
-            sizeId: query.sizeId,
-            categoryId: query.categoryId,
-            isFeatured: query.isFeatured,
-        }
-    });
-
-    const res = await fetch(URL);   // Hacemos la petición con la nueva URL que contiene todas las props añadidas
+const getProduct = async (id: string): Promise<Product> => {
+    const res = await fetch(`${URL}/${id}`);
     return res.json();
+
 }
 
-export default getProducts;
+export default getProduct

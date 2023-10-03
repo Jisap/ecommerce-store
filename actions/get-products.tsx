@@ -22,7 +22,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         }
     });
 
-    const res = await fetch(URL);   // Hacemos la petición con la nueva URL que contiene todas las props añadidas
+    
+    const res = await fetch(url);   // Hacemos la petición con la nueva URL que contiene todas las props añadidas
     return res.json();
 }
 
