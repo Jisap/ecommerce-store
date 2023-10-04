@@ -1,10 +1,15 @@
 "use client"
 
+import getCategory from "@/actions/get-category";
+import getColors from "@/actions/get-colors";
 import getProducts from "@/actions/get-products";
+import getSizes from "@/actions/get-sizes";
+import Billboard from "@/components/billboard";
+import Container from "@/components/ui/container";
 
 export const revalidate = 0;
 
-interface CategroyProps {
+interface CategoryPageProps {
    params: {
       categoryId: string;
    },
@@ -14,7 +19,7 @@ interface CategroyProps {
    }
 }
 
-const CategoryPage: React.FC<CategroyProps> = async({ params, searchParams }) => {
+const CategoryPage: React.FC<CategoryPageProps> = async({ params, searchParams }) => {
 
    const products = await getProducts({
       categoryId: params.categoryId,
@@ -22,8 +27,20 @@ const CategoryPage: React.FC<CategroyProps> = async({ params, searchParams }) =>
       sizeId: searchParams.sizeId,
    });
 
+   const sizes = await getSizes();
+   const colors = await getColors();
+   const category = await getCategory(params.categoryId);
+
+
+
    return (
-      <div>CategoryPage</div>
+      <div className="bg-white">
+         <Container>
+            <Billboard 
+               data={category.billboard}
+            />
+         </Container>
+      </div>
    )
 }
 

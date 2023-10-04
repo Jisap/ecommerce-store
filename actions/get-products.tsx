@@ -21,9 +21,9 @@ const getProducts = async (query: Query): Promise<Product[]> => {
             isFeatured: query.isFeatured,
         }
     });
-
     
     const res = await fetch(url);   // Hacemos la petición con la nueva URL que contiene todas las props añadidas
+    
     return res.json();
 }
 
