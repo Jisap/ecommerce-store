@@ -6,6 +6,7 @@ import getProducts from "@/actions/get-products";
 import getSizes from "@/actions/get-sizes";
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";
+import Filter from "./components/filter";
 
 export const revalidate = 0;
 
@@ -39,6 +40,23 @@ const CategoryPage: React.FC<CategoryPageProps> = async({ params, searchParams }
             <Billboard 
                data={category.billboard}
             />
+            <div className="px-4 sm:px-6 lg:px-8 pb-24">
+               <div className="lg:grid lg:grid-col-5 lg:gap-x-8">
+                  {/* Add mobile filters */}
+                  <div className="hidden lg:block">
+                     <Filter 
+                        valueKey="sizeId"
+                        name="Sizes"
+                        data={sizes}
+                     />
+                     <Filter
+                        valueKey="colorId"
+                        name="Colors"
+                        data={colors}
+                     />
+                  </div>
+               </div>
+            </div>
          </Container>
       </div>
    )
