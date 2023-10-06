@@ -44,7 +44,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async({ params, searchParams }
                data={category.billboard}
             />
             <div className="px-4 sm:px-6 lg:px-8 pb-24">
-               <div className="lg:grid lg:grid-col-5 lg:gap-x-8">
+               <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
                   
                   <MobileFilters sizes={sizes} colors={colors} />
 
