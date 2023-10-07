@@ -26,7 +26,7 @@ const ProductCard:React.FC<ProductCard> = ({ data }) => {
 
    const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
       event.stopPropagation();
-      previewModal.onOpen(data); // establece estado para el modal -> data=product
+      previewModal.onOpen(data); // establece estado para el modal -> data=product, isOpen=true -> ModalProvider -> PreviewModal -> Modal
    }
 
    return (
