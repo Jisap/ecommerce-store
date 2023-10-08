@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { Product } from '../types';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import toast from 'react-hot-toast/headless';
+import toast from 'react-hot-toast';
 
 
 interface CartStore {
@@ -12,34 +12,33 @@ interface CartStore {
 };
 
 const useCart = create(
-    persist<CartStore>((set, get) => 
-        
-         ({
-            items: [],
+    persist<CartStore>((set, get) => ({
 
-            addItem: (data: Product) => {
-                const currentItems = get().items;
-                const existingItem = currentItems.find((item) => item.id === data.id);
+        items: [],
+
+        addItem: (data: Product) => {
+            const currentItems = get().items;
+            const existingItem = currentItems.find((item) => item.id === data.id);
 
                 if (existingItem) {
-                    return toast("Item already in cart.");
+                    return toast.error("Item already in cart.");
                 }
 
                 set({ items: [...get().items, data] });
                 toast.success("item added to cart");
-            },
+        },
 
-            removeItem(id: string) { 
-                set({ items: [...get().items.filter((item) => item.id !== id)] });
-                toast.success("Item removed from the cart.")
-            },
+        removeItem(id: string) { 
+            set({ items: [...get().items.filter((item) => item.id !== id)] });
+            toast.success("Item removed from the cart.")
+        },
 
-            removeAll: () => set({ items: [] }),
+        removeAll: () => set({ items: [] }),
 
-        }),{
-            name: "cart-storage",
-            storage: createJSONStorage(() => localStorage)
-        })
+    }),{
+        name: "cart-storage",
+        storage: createJSONStorage(() => localStorage)
+    })
        
 )
 
